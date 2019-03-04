@@ -3,8 +3,15 @@ package io.github.ghacupha.fassets.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -18,8 +25,8 @@ import java.util.Objects;
 @Table(name = "category")
 public class Category implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    
+    private static final long serialVersionUID = 7287278383269032512L;
+
     @Id
     private Long id;
 
@@ -29,14 +36,15 @@ public class Category implements Serializable {
 
     @OneToMany(mappedBy = "category")
     private Set<Asset> assets = new HashSet<>();
-    @OneToOne(optional = false)    @NotNull
 
+    @OneToOne(optional = false)
+    @NotNull
     @MapsId
     @JoinColumn(name = "id")
     private BankAccount bankAccount;
 
-    @OneToOne(optional = false)    @NotNull
-
+    @OneToOne(optional = false)
+    @NotNull
     @MapsId
     @JoinColumn(name = "id")
     private Depreciation depreciation;

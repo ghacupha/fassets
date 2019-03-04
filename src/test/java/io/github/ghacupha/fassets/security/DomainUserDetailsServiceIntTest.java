@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -41,6 +42,7 @@ public class DomainUserDetailsServiceIntTest {
     private UserRepository userRepository;
 
     @Autowired
+    @Qualifier("userDetailsService")
     private UserDetailsService domainUserDetailsService;
 
     private User userOne;

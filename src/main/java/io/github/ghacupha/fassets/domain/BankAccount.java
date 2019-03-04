@@ -17,8 +17,8 @@ import java.util.Objects;
 @Table(name = "bank_account")
 public class BankAccount implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    
+    private static final long serialVersionUID = -8298484849743192723L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
