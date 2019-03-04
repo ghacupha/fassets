@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="asset">
+            <h2><span>Asset</span> {{asset.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{asset.description}}</span>
+                </dd>
+                <dt><span>Purchase Date</span></dt>
+                <dd>
+                    <span>{{asset.purchaseDate}}</span>
+                </dd>
+                <dt><span>Asset Tag</span></dt>
+                <dd>
+                    <span>{{asset.assetTag}}</span>
+                </dd>
+                <dt><span>Purchase Cost</span></dt>
+                <dd>
+                    <span>{{asset.purchaseCost}}</span>
+                </dd>
+                <dt><span>Category</span></dt>
+                <dd>
+                    <div *ngIf="asset.categoryId">
+                        <a [routerLink]="['/category', asset.categoryId, 'view']">{{asset.categoryId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Service Outlet</span></dt>
+                <dd>
+                    <div *ngIf="asset.serviceOutletId">
+                        <a [routerLink]="['/service-outlet', asset.serviceOutletId, 'view']">{{asset.serviceOutletId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/asset', asset.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
