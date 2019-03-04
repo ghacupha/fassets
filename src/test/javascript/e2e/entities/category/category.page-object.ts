@@ -27,6 +27,8 @@ export class CategoryUpdatePage {
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
     categoryInput = element(by.id('field_category'));
+    bankAccountSelect = element(by.id('field_bankAccount'));
+    depreciationSelect = element(by.id('field_depreciation'));
 
     async getPageTitle() {
         return this.pageTitle.getText();
@@ -38,6 +40,44 @@ export class CategoryUpdatePage {
 
     async getCategoryInput() {
         return this.categoryInput.getAttribute('value');
+    }
+
+    async bankAccountSelectLastOption() {
+        await this.bankAccountSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async bankAccountSelectOption(option) {
+        await this.bankAccountSelect.sendKeys(option);
+    }
+
+    getBankAccountSelect(): ElementFinder {
+        return this.bankAccountSelect;
+    }
+
+    async getBankAccountSelectedOption() {
+        return this.bankAccountSelect.element(by.css('option:checked')).getText();
+    }
+
+    async depreciationSelectLastOption() {
+        await this.depreciationSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async depreciationSelectOption(option) {
+        await this.depreciationSelect.sendKeys(option);
+    }
+
+    getDepreciationSelect(): ElementFinder {
+        return this.depreciationSelect;
+    }
+
+    async getDepreciationSelectedOption() {
+        return this.depreciationSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

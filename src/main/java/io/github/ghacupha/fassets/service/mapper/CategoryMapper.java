@@ -8,11 +8,16 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Category and its DTO CategoryDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {BankAccountMapper.class, DepreciationMapper.class})
 public interface CategoryMapper extends EntityMapper<CategoryDTO, Category> {
 
+    @Mapping(source = "bankAccount.id", target = "bankAccountId")
+    @Mapping(source = "depreciation.id", target = "depreciationId")
+    CategoryDTO toDto(Category category);
 
     @Mapping(target = "assets", ignore = true)
+    @Mapping(source = "bankAccountId", target = "bankAccount")
+    @Mapping(source = "depreciationId", target = "depreciation")
     Category toEntity(CategoryDTO categoryDTO);
 
     default Category fromId(Long id) {

@@ -6,7 +6,34 @@
             "relationshipName": "asset",
             "otherEntityName": "asset",
             "relationshipType": "one-to-many",
-            "otherEntityRelationshipName": "category"
+            "otherEntityRelationshipName": "category",
+            "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipName": "bankAccount",
+            "otherEntityName": "bankAccount",
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": true,
+            "otherEntityRelationshipName": "category",
+            "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipName": "depreciation",
+            "otherEntityName": "depreciation",
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": true,
+            "otherEntityRelationshipName": "category",
+            "otherEntityRelationshipNameUndefined": false
         }
     ],
     "fields": [

@@ -21,7 +21,6 @@ public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -30,6 +29,18 @@ public class Category implements Serializable {
 
     @OneToMany(mappedBy = "category")
     private Set<Asset> assets = new HashSet<>();
+    @OneToOne(optional = false)    @NotNull
+
+    @MapsId
+    @JoinColumn(name = "id")
+    private BankAccount bankAccount;
+
+    @OneToOne(optional = false)    @NotNull
+
+    @MapsId
+    @JoinColumn(name = "id")
+    private Depreciation depreciation;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -75,6 +86,32 @@ public class Category implements Serializable {
 
     public void setAssets(Set<Asset> assets) {
         this.assets = assets;
+    }
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public Category bankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
+        return this;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
+    public Depreciation getDepreciation() {
+        return depreciation;
+    }
+
+    public Category depreciation(Depreciation depreciation) {
+        this.depreciation = depreciation;
+        return this;
+    }
+
+    public void setDepreciation(Depreciation depreciation) {
+        this.depreciation = depreciation;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

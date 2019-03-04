@@ -3,6 +3,7 @@ package io.github.ghacupha.fassets.service.impl;
 import io.github.ghacupha.fassets.service.CategoryService;
 import io.github.ghacupha.fassets.domain.Category;
 import io.github.ghacupha.fassets.repository.CategoryRepository;
+import io.github.ghacupha.fassets.repository.BankAccountRepository;
 import io.github.ghacupha.fassets.service.dto.CategoryDTO;
 import io.github.ghacupha.fassets.service.mapper.CategoryMapper;
 import org.slf4j.Logger;
@@ -28,9 +29,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryMapper categoryMapper;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
+    private final BankAccountRepository bankAccountRepository;
+
+    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper, BankAccountRepository bankAccountRepository) {
         this.categoryRepository = categoryRepository;
         this.categoryMapper = categoryMapper;
+        this.bankAccountRepository = bankAccountRepository;
     }
 
     /**
@@ -43,6 +47,8 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryDTO save(CategoryDTO categoryDTO) {
         log.debug("Request to save Category : {}", categoryDTO);
         Category category = categoryMapper.toEntity(categoryDTO);
+        long bankAccountId = categoryDTO.getBankAccountId();
+        bankAccountRepository.findById(bankAccountId).ifPresent(category::bankAccount);
         category = categoryRepository.save(category);
         return categoryMapper.toDto(category);
     }

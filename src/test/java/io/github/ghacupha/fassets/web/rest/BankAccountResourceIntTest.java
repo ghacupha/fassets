@@ -9,7 +9,6 @@ import io.github.ghacupha.fassets.service.BankAccountService;
 import io.github.ghacupha.fassets.service.dto.BankAccountDTO;
 import io.github.ghacupha.fassets.service.mapper.BankAccountMapper;
 import io.github.ghacupha.fassets.web.rest.errors.ExceptionTranslator;
-import io.github.ghacupha.fassets.service.dto.BankAccountCriteria;
 import io.github.ghacupha.fassets.service.BankAccountQueryService;
 
 import org.junit.Before;
@@ -231,7 +230,7 @@ public class BankAccountResourceIntTest {
             .andExpect(jsonPath("$.[*].accountNumber").value(hasItem(DEFAULT_ACCOUNT_NUMBER.toString())))
             .andExpect(jsonPath("$.[*].accountBalance").value(hasItem(DEFAULT_ACCOUNT_BALANCE.intValue())));
     }
-    
+
     @Test
     @Transactional
     public void getBankAccount() throws Exception {

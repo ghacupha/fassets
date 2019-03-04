@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Category.
+    -->
+    <changeSet id="20190304062740-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="id"
+                                 baseTableName="category"
+                                 constraintName="fk_category_bank_account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bank_account"/>
+
+        <addForeignKeyConstraint baseColumnNames="id"
+                                 baseTableName="category"
+                                 constraintName="fk_category_depreciation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="depreciation"/>
+
+    </changeSet>
+</databaseChangeLog>

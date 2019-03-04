@@ -21,6 +21,32 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" for="field_bankAccount">Bank Account</label>
+                    <select class="form-control" id="field_bankAccount" name="bankAccount" [(ngModel)]="category.bankAccountId" required>
+                        <option *ngIf="!editForm.value.bankAccount" [ngValue]="null" selected></option>
+                        <option [ngValue]="bankAccountOption.id" *ngFor="let bankAccountOption of bankaccounts; trackBy: trackBankAccountById">{{bankAccountOption.id}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.bankAccount?.dirty && editForm.controls.bankAccount?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.bankAccount?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_depreciation">Depreciation</label>
+                    <select class="form-control" id="field_depreciation" name="depreciation" [(ngModel)]="category.depreciationId" required>
+                        <option *ngIf="!editForm.value.depreciation" [ngValue]="null" selected></option>
+                        <option [ngValue]="depreciationOption.id" *ngFor="let depreciationOption of depreciations; trackBy: trackDepreciationById">{{depreciationOption.id}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.depreciation?.dirty && editForm.controls.depreciation?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.depreciation?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

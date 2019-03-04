@@ -96,6 +96,14 @@ public class CategoryQueryService extends QueryService<Category> {
                 specification = specification.and(buildSpecification(criteria.getAssetId(),
                     root -> root.join(Category_.assets, JoinType.LEFT).get(Asset_.id)));
             }
+            if (criteria.getBankAccountId() != null) {
+                specification = specification.and(buildSpecification(criteria.getBankAccountId(),
+                    root -> root.join(Category_.bankAccount, JoinType.LEFT).get(BankAccount_.id)));
+            }
+            if (criteria.getDepreciationId() != null) {
+                specification = specification.and(buildSpecification(criteria.getDepreciationId(),
+                    root -> root.join(Category_.depreciation, JoinType.LEFT).get(Depreciation_.id)));
+            }
         }
         return specification;
     }

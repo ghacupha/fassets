@@ -47,6 +47,10 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'bank-account',
                 loadChildren: './bank-account/bank-account.module#FassetsBankAccountModule'
+            },
+            {
+                path: 'category',
+                loadChildren: './category/category.module#FassetsCategoryModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

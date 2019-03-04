@@ -16,6 +16,8 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="category"><span>Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="bankAccountId"><span>Bank Account</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="depreciationId"><span>Depreciation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -23,6 +25,16 @@
             <tr *ngFor="let category of categories ;trackBy: trackId">
                 <td><a [routerLink]="['/category', category.id, 'view' ]">{{category.id}}</a></td>
                 <td>{{category.category}}</td>
+                <td>
+                    <div *ngIf="category.bankAccountId">
+                        <a [routerLink]="['../bank-account', category.bankAccountId , 'view' ]" >{{category.bankAccountId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="category.depreciationId">
+                        <a [routerLink]="['../depreciation', category.depreciationId , 'view' ]" >{{category.depreciationId}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

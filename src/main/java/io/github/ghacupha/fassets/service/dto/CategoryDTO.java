@@ -14,6 +14,10 @@ public class CategoryDTO implements Serializable {
     private String category;
 
 
+    private Long bankAccountId;
+
+    private Long depreciationId;
+
     public Long getId() {
         return id;
     }
@@ -28,6 +32,22 @@ public class CategoryDTO implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Long getBankAccountId() {
+        return bankAccountId;
+    }
+
+    public void setBankAccountId(Long bankAccountId) {
+        this.bankAccountId = bankAccountId;
+    }
+
+    public Long getDepreciationId() {
+        return depreciationId;
+    }
+
+    public void setDepreciationId(Long depreciationId) {
+        this.depreciationId = depreciationId;
     }
 
     @Override
@@ -56,6 +76,8 @@ public class CategoryDTO implements Serializable {
         return "CategoryDTO{" +
             "id=" + getId() +
             ", category='" + getCategory() + "'" +
+            ", bankAccount=" + getBankAccountId() +
+            ", depreciation=" + getDepreciationId() +
             "}";
     }
 }

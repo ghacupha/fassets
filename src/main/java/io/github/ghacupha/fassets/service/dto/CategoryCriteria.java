@@ -28,6 +28,10 @@ public class CategoryCriteria implements Serializable {
 
     private LongFilter assetId;
 
+    private LongFilter bankAccountId;
+
+    private LongFilter depreciationId;
+
     public LongFilter getId() {
         return id;
     }
@@ -52,6 +56,22 @@ public class CategoryCriteria implements Serializable {
         this.assetId = assetId;
     }
 
+    public LongFilter getBankAccountId() {
+        return bankAccountId;
+    }
+
+    public void setBankAccountId(LongFilter bankAccountId) {
+        this.bankAccountId = bankAccountId;
+    }
+
+    public LongFilter getDepreciationId() {
+        return depreciationId;
+    }
+
+    public void setDepreciationId(LongFilter depreciationId) {
+        this.depreciationId = depreciationId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -65,7 +85,9 @@ public class CategoryCriteria implements Serializable {
         return
             Objects.equals(id, that.id) &&
             Objects.equals(category, that.category) &&
-            Objects.equals(assetId, that.assetId);
+            Objects.equals(assetId, that.assetId) &&
+            Objects.equals(bankAccountId, that.bankAccountId) &&
+            Objects.equals(depreciationId, that.depreciationId);
     }
 
     @Override
@@ -73,7 +95,9 @@ public class CategoryCriteria implements Serializable {
         return Objects.hash(
         id,
         category,
-        assetId
+        assetId,
+        bankAccountId,
+        depreciationId
         );
     }
 
@@ -83,6 +107,8 @@ public class CategoryCriteria implements Serializable {
                 (id != null ? "id=" + id + ", " : "") +
                 (category != null ? "category=" + category + ", " : "") +
                 (assetId != null ? "assetId=" + assetId + ", " : "") +
+                (bankAccountId != null ? "bankAccountId=" + bankAccountId + ", " : "") +
+                (depreciationId != null ? "depreciationId=" + depreciationId + ", " : "") +
             "}";
     }
 

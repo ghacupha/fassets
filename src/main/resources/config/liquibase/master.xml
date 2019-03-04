@@ -12,5 +12,6 @@
     <include file="config/liquibase/changelog/20190304063753_added_entity_Depreciation.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190304055840_added_entity_constraints_Asset.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190304062740_added_entity_constraints_Category.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

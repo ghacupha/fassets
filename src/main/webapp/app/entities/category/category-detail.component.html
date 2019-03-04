@@ -9,6 +9,18 @@
                 <dd>
                     <span>{{category.category}}</span>
                 </dd>
+                <dt><span>Bank Account</span></dt>
+                <dd>
+                    <div *ngIf="category.bankAccountId">
+                        <a [routerLink]="['/bank-account', category.bankAccountId, 'view']">{{category.bankAccountId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Depreciation</span></dt>
+                <dd>
+                    <div *ngIf="category.depreciationId">
+                        <a [routerLink]="['/depreciation', category.depreciationId, 'view']">{{category.depreciationId}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

@@ -21,6 +21,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -55,6 +56,9 @@ public class CategoryResource {
         log.debug("REST request to save Category : {}", categoryDTO);
         if (categoryDTO.getId() != null) {
             throw new BadRequestAlertException("A new category cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        if (Objects.isNull(categoryDTO.getBankAccountId())) {
+            throw new BadRequestAlertException("Invalid association value provided", ENTITY_NAME, "null");
         }
         CategoryDTO result = categoryService.save(categoryDTO);
         return ResponseEntity.created(new URI("/api/categories/" + result.getId()))

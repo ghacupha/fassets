@@ -4,6 +4,8 @@ import io.github.ghacupha.fassets.FassetsApp;
 
 import io.github.ghacupha.fassets.domain.Category;
 import io.github.ghacupha.fassets.domain.Asset;
+import io.github.ghacupha.fassets.domain.BankAccount;
+import io.github.ghacupha.fassets.domain.Depreciation;
 import io.github.ghacupha.fassets.repository.CategoryRepository;
 import io.github.ghacupha.fassets.service.CategoryService;
 import io.github.ghacupha.fassets.service.dto.CategoryDTO;
@@ -101,6 +103,16 @@ public class CategoryResourceIntTest {
     public static Category createEntity(EntityManager em) {
         Category category = new Category()
             .category(DEFAULT_CATEGORY);
+        // Add required entity
+        BankAccount bankAccount = BankAccountResourceIntTest.createEntity(em);
+        em.persist(bankAccount);
+        em.flush();
+        category.setBankAccount(bankAccount);
+        // Add required entity
+        Depreciation depreciation = DepreciationResourceIntTest.createEntity(em);
+        em.persist(depreciation);
+        em.flush();
+        category.setDepreciation(depreciation);
         return category;
     }
 
@@ -126,6 +138,9 @@ public class CategoryResourceIntTest {
         assertThat(categoryList).hasSize(databaseSizeBeforeCreate + 1);
         Category testCategory = categoryList.get(categoryList.size() - 1);
         assertThat(testCategory.getCategory()).isEqualTo(DEFAULT_CATEGORY);
+
+        // Validate the id for MapsId, the ids must be same
+        assertThat(testCategory.getId()).isEqualTo(testCategory.getBankAccount().getId());
     }
 
     @Test
@@ -250,6 +265,44 @@ public class CategoryResourceIntTest {
 
         // Get all the categoryList where asset equals to assetId + 1
         defaultCategoryShouldNotBeFound("assetId.equals=" + (assetId + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllCategoriesByBankAccountIsEqualToSomething() throws Exception {
+        // Initialize the database
+        BankAccount bankAccount = BankAccountResourceIntTest.createEntity(em);
+        em.persist(bankAccount);
+        em.flush();
+        category.setBankAccount(bankAccount);
+        categoryRepository.saveAndFlush(category);
+        Long bankAccountId = bankAccount.getId();
+
+        // Get all the categoryList where bankAccount equals to bankAccountId
+        defaultCategoryShouldBeFound("bankAccountId.equals=" + bankAccountId);
+
+        // Get all the categoryList where bankAccount equals to bankAccountId + 1
+        defaultCategoryShouldNotBeFound("bankAccountId.equals=" + (bankAccountId + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllCategoriesByDepreciationIsEqualToSomething() throws Exception {
+        // Initialize the database
+        Depreciation depreciation = DepreciationResourceIntTest.createEntity(em);
+        em.persist(depreciation);
+        em.flush();
+        category.setDepreciation(depreciation);
+        categoryRepository.saveAndFlush(category);
+        Long depreciationId = depreciation.getId();
+
+        // Get all the categoryList where depreciation equals to depreciationId
+        defaultCategoryShouldBeFound("depreciationId.equals=" + depreciationId);
+
+        // Get all the categoryList where depreciation equals to depreciationId + 1
+        defaultCategoryShouldNotBeFound("depreciationId.equals=" + (depreciationId + 1));
     }
 
     /**
